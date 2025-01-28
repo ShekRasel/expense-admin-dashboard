@@ -26,14 +26,14 @@ function Dashboard() {
       if (authTokenAdmin) {
         // Decode the JWT token to get the expiry time
         const decodedToken = jwtDecode(authTokenAdmin); // Decode the token using jwtDecode
-        console.log("Decoded Token:", decodedToken); // You can see all claims here
+        // You can see all claims here
 
         const expireAt = decodedToken.exp; // Expiry time in seconds
-        console.log("Expire Time (Unix timestamp):", expireAt);
+       
 
         // Convert the expireAt to a human-readable format
         const expireDate = new Date(expireAt * 1000); // Convert seconds to milliseconds
-        console.log("Expiry Date:", expireDate.toString()); // Log the expiry date
+         // Log the expiry date
 
         const currentTime = Math.floor(Date.now() / 1000); // current time in seconds
         if (expireAt < currentTime) {

@@ -1,17 +1,45 @@
-'use client'
-import React, { useState } from "react";
+'use client';
+import React, { useState } from 'react';
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-function AddMaintance() {
-  const [description, setDescription] = useState("");
+function AddMaintenance() {
+  const [description, setDescription] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Maintenance Added:", description);
-    setDescription("");
+
+    // Retrieve token from localStorage
+    const token = localStorage.getItem('authTokenAdmin');
+    if (!token) {
+      toast.error('Authorization token is missing!');
+      return;
+    }
+
+    try {
+      const response = await axios.post(
+        'http://localhost:3000/maintenance/create',
+        { message: description }, // Request body
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // Attach token in header
+          },
+        }
+      );
+
+      if (response.status === 201 || response.status === 200) {
+        toast.success('Maintenance message added successfully!');
+        setDescription(''); // Clear the input
+      }
+    } catch (error) {
+      console.error('Error adding maintenance:', error);
+      toast.error('Failed to add maintenance. Please try again.');
+    }
   };
 
   return (
-    <div className="p-4 border ">
+    <div className="p-4 border">
       <h2 className="text-xl font-bold text-gray-700 mb-4 text-center">Add Maintenance</h2>
       <form onSubmit={handleSubmit} className="space-y-3">
         <textarea
@@ -32,4 +60,4 @@ function AddMaintance() {
   );
 }
 
-export default AddMaintance;
+export default AddMaintenance;

@@ -1,5 +1,7 @@
-'use client'
+'use client';
 import React, { useEffect, useState } from 'react';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function UsersInfo() {
   const [userData, setUserData] = useState([]);
@@ -64,7 +66,18 @@ function UsersInfo() {
       }
 
       const data = await response.json();
-      alert(`User ${data.admin.username} successfully promoted to admin!`);
+
+      // Show success toast notification
+      toast.success(`User ${data.admin.username} successfully promoted to admin!`, {
+        position: 'top-right',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'colored',
+      });
     } catch (error) {
       setPromoteError(error.message);
     }
@@ -93,6 +106,7 @@ function UsersInfo() {
 
   return (
     <div className="p-4 border bg-white rounded-md">
+      <ToastContainer />
       <h2 className="text-xl font-bold text-gray-700 mb-4 text-center">Users Information</h2>
 
       {promoteError && (

@@ -19,7 +19,7 @@ function Allexpense() {
 
         if (response.ok) {
           const data = await response.json();
-          console.log(data); // Log the data for debugging
+          
           setExpenses(data || []); // Set the whole response as expenses
         } else {
           console.error("Failed to fetch expenses");
