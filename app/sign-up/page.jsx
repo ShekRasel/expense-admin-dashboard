@@ -6,8 +6,9 @@ import { useRouter } from 'next/navigation';
 import { AiOutlineEye, AiOutlineEyeInvisible, AiOutlineUser, AiOutlineMail, AiOutlineLock, AiOutlineHome } from 'react-icons/ai'; // Icons for password visibility toggle
 import { toast, ToastContainer } from 'react-toastify'; // Toast notifications
 import 'react-toastify/dist/ReactToastify.css'; // Import toast styles
-
+import ForgetPasswordModal from "../_components/ForgetPasswordModal";
 const SignUp = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState({
     fullname: '',
     username: '',
@@ -77,7 +78,7 @@ const SignUp = () => {
 
       // Redirect to the dashboard after successful signup (or sign-in if needed)
       setTimeout(() => {
-        router.push('/dashboard'); // You can change this to '/sign-in' if you want them to log in
+        router.push('/sign-in'); 
       }, 2000);
     } catch (error) {
       console.error(error.message);
@@ -195,6 +196,8 @@ const SignUp = () => {
             </div>
           </div>
 
+          
+
           {/* Submit Button */}
           <button
             type="submit"
@@ -203,6 +206,16 @@ const SignUp = () => {
             Sign Up
           </button>
         </form>
+
+        {/* Forgot Password Link */}
+        <div className="mt-4 text-center">
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="text-blue-600 hover:underline transition-all"
+            >
+              Forgot Password?
+            </button>
+          </div>
 
         <div className="mt-6 text-center">
           <div className="text-gray-700">
@@ -213,6 +226,13 @@ const SignUp = () => {
           </div>
         </div>
       </div>
+
+      {/* Forget Password Modal */}
+      <ForgetPasswordModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
+
 
       {/* React Toastify container to show notifications */}
       <ToastContainer />
