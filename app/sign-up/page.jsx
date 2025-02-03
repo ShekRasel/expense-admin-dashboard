@@ -7,6 +7,7 @@ import { AiOutlineEye, AiOutlineEyeInvisible, AiOutlineUser, AiOutlineMail, AiOu
 import { toast, ToastContainer } from 'react-toastify'; // Toast notifications
 import 'react-toastify/dist/ReactToastify.css'; // Import toast styles
 import ForgetPasswordModal from "../_components/ForgetPasswordModal";
+
 const SignUp = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState({
@@ -88,16 +89,51 @@ const SignUp = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-r bg-gray-300 flex items-center justify-center">
-      <div className="bg-white p-8 rounded-lg shadow-xl max-w-md w-full transform transition-all duration-500 hover:scale-105">
-        {/* Back Home Button */}
-        <button
-          onClick={() => router.push('/')}
-          className="absolute top-6 left-6 text-gray-500 hover:text-gray-800 transition duration-300"
-        >
-          <AiOutlineHome className="h-6 w-6" />
-        </button>
+    <div>
+  <header className="bg-white p-4 flex justify-between shadow-md items-center z-50 px-4 md:px-10 xl:px-16 2xl:px-48">
+    {/* Logo */}
+    <div className="flex items-center">
+      <img
+        src="/logo.png" // Replace with your logo path
+        alt="Logo"
+        className="h-12"
+      />
+    </div>
 
+    {/* Sign In / Sign Up Buttons with Links */}
+    <div className="flex space-x-4">
+      <Link
+        href="/sign-in"
+        className="bg-blue-500 text-white px-6 py-2 rounded-md hover:bg-blue-600 transition duration-300 text-lg font-semibold"
+      >
+        Sign In
+      </Link>
+      <Link
+        href="/sign-up"
+        className="bg-green-500 text-white px-6 py-2 rounded-md hover:bg-green-600 transition duration-300 text-lg font-semibold"
+      >
+        Sign Up
+      </Link>
+    </div>
+  </header>
+
+  <div className="min-h-screen bg-gradient-to-r bg-gray-300 flex items-center justify-center lg:py-10">
+    <div className="bg-white p-8 rounded-lg shadow-xl max-w-4xl w-full transform transition-all duration-500  flex">
+      {/* Image and Text Section (Hidden on mobile, visible on lg+) */}
+      <div className="hidden lg:flex w-1/2 p-8  flex-col justify-center items-center bg-blue-600 text-white rounded-l-lg">
+        <img
+          src="/admin5.avif"
+          alt="Admin Signup"
+          className="w-64 h-64 mb-6"
+        />
+        <h2 className="text-3xl font-bold mb-4">Welcome to Admin Dashboard</h2>
+        <p className="text-center">
+          Join our platform to manage and monitor your organization's activities with ease. Sign up now to get started!
+        </p>
+      </div>
+
+      {/* Signup Form Section */}
+      <div className="w-full lg:w-1/2 p-8">
         <h2 className="text-2xl font-semibold text-center text-blue-600 mb-6 animate__animated animate__fadeIn animate__delay-1s">
           Sign Up
         </h2>
@@ -196,8 +232,6 @@ const SignUp = () => {
             </div>
           </div>
 
-          
-
           {/* Submit Button */}
           <button
             type="submit"
@@ -209,13 +243,13 @@ const SignUp = () => {
 
         {/* Forgot Password Link */}
         <div className="mt-4 text-center">
-            <button
-              onClick={() => setIsModalOpen(true)}
-              className="text-blue-600 hover:underline transition-all"
-            >
-              Forgot Password?
-            </button>
-          </div>
+          <button
+            onClick={() => setIsModalOpen(true)}
+            className="text-blue-600 hover:underline transition-all"
+          >
+            Forgot Password?
+          </button>
+        </div>
 
         <div className="mt-6 text-center">
           <div className="text-gray-700">
@@ -226,17 +260,27 @@ const SignUp = () => {
           </div>
         </div>
       </div>
-
-      {/* Forget Password Modal */}
-      <ForgetPasswordModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-      />
-
-
-      {/* React Toastify container to show notifications */}
-      <ToastContainer />
     </div>
+
+    {/* Forget Password Modal */}
+    <ForgetPasswordModal
+      isOpen={isModalOpen}
+      onClose={() => setIsModalOpen(false)}
+    />
+
+    {/* React Toastify container to show notifications */}
+    <ToastContainer />
+  </div>
+
+  <footer className="bg-gray-800 text-white py-6">
+    <div className="container mx-auto text-center">
+      <p className="text-lg">
+        &copy; {new Date().getFullYear()} Admin Dashboard. All rights reserved.
+      </p>
+    </div>
+  </footer>
+</div>
+
   );
 };
 
