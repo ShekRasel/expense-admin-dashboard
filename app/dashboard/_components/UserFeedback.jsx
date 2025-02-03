@@ -13,7 +13,6 @@ function UserFeedback() {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${authAdminToken}`,
           },
         });
 
