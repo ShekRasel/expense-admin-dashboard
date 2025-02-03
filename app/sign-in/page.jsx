@@ -90,7 +90,7 @@ const SignIn = () => {
   <div className="min-h-screen bg-gradient-to-r bg-gray-300 flex items-center justify-center">
     <div className="bg-white p-8 rounded-lg shadow-xl max-w-4xl w-full transform transition-all duration-500 hover:scale-105 flex flex-col lg:flex-row">
       {/* Left Side - Hidden in mobile */}
-      <div className="lg:w-1/2 p-8 flex flex-col justify-center items-center bg-blue-600 text-white rounded-t-lg lg:rounded-l-lg lg:rounded-tr-none hidden lg:flex">
+      <div className="lg:w-1/2 p-8  flex-col justify-center items-center bg-blue-600 text-white rounded-t-lg lg:rounded-l-lg lg:rounded-tr-none hidden lg:flex">
         <img src="/admin5.avif" alt="Admin SignIn" className="w-64 h-64 mb-6" />
         <h2 className="text-3xl font-bold mb-4">Welcome Back</h2>
         <p className="text-center">Sign in to access your account and manage everything efficiently.</p>
